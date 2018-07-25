@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+    <form class="input-group" action="/add" method="POST">
+        <tr>
+            {{ form.srcip(class="form-control" , placeholder="输入源IP" , style="width:120px;") }}
+
+            {{ form.dstip(class="form-control" , placeholder="输入目的IP" , required="required" ,style="width:120px;") }}
+
+            {{ form.dstport(class="form-control" , placeholder="输入目的端口" ,style="width:120px;") }}
+
+            {{ form.device(class="form-control" , placeholder="输入设备名" ,style="width:120px;") }}
+        </tr>
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Add</button>
+        </span>
+    </form>

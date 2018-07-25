@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+    <form class="input-group" action="/add" method="POST">
+        <tr>
+            {{ form.srcip(class="form-control" , placeholder="输入源IP" , style="width:80px;") }}
+
+            {{ form.dstip(class="form-control" , placeholder="输入目的IP" ,style="width:80px;") }}
+
+            {{ form.dstport(class="form-control" , placeholder="输入目的端口" ,style="width:80px;") }}
+
+            {{ form.device(class="form-control" , placeholder="输入设备名" ,style="width:80px;") }}
+
+            {{ form.reason(class="form-control" , placeholder="原因" ,style="width:80px;") }}
+
+            {{ form.staff(class="form-control" , placeholder="需求人" ,style="width:80px;") }}
+        </tr>
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Add</button>
+        </span>
+    </form>
+    {% for error in form.errors.content %}
+        <div>{{ error }}</div>
+    {% endfor %}
+    <div>
+        <h2>Acl List</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>源ip</th>
+                        <th>目的ip</th>
+                        <th>端口</th>
+                        <th>设备</th>
+                        <th>原因</th>
+                        <th>需求人</th>
+                        <th>时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for acl in acls %}
+                        <tr>
+                            <td>{{ acl.srcip }}</td>
+                            <td>{{ acl.dstip }}</td>
+                            <td>{{ acl.dstport }}</td>
+                            <td>{{ acl.device }}</td>
+                            <td>{{ acl.reason }}</td>
+                            <td>{{ acl.staff }}</td>
+                            <td>{{ acl.time.strftime('%H:%M %d-%m-%Y') }}</td>
+                            <td><a href="/delete/{{ acl.id }}" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    {%  endfor %}
+                </tbody>
+            </table>
+    </div>
+{% endblock %}
+
